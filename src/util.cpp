@@ -383,7 +383,7 @@ void util::checkForUpdate(void *a)
         std::vector<uint8_t> jksvBuff;
         std::string url = json_object_get_string(dlUrl);
         curlFuncs::getBinURL(&jksvBuff, url);
-        FILE *jksvOut = fopen("sdmc:/switch/JKSV.nro", "wb");
+        FILE *jksvOut = fopen("sdmc:/switch/JKSV/JKSV.nro", "wb");
         fwrite(jksvBuff.data(), 1, jksvBuff.size(), jksvOut);
         fclose(jksvOut);
     }

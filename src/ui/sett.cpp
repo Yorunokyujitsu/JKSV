@@ -207,28 +207,28 @@ static void toggleOpt(void *a)
             toggleBool(cfg::config["zip"]);
             break;
 
-        case 17:
+        /*case 17:
             toggleBool(cfg::config["langOverride"]);
-            break;
+            break;*/
 
-        case 18:
+        case 17:
             toggleBool(cfg::config["trashBin"]);
             break;
 
-        case 19:
+        case 18:
             if(++cfg::sortType > 2)
                 cfg::sortType = 0;
             data::loadUsersTitles(false);
             ui::ttlRefresh();
             break;
 
-        case 20:
+        case 19:
             ui::animScale += 0.5f;
             if(ui::animScale > 8)
                 ui::animScale = 1;
             break;
 
-        case 21:
+        case 20:
             toggleBool(cfg::config["autoUpload"]);
             break;
     }
@@ -248,14 +248,14 @@ static void updateMenuText()
     ui::settMenu->editOpt(14, NULL, ui::getUIString(settMenuStr, 14) + getBoolText(cfg::config["sysSaveWrite"]));
     ui::settMenu->editOpt(15, NULL, ui::getUIString(settMenuStr, 15) + getBoolText(cfg::config["directFsCmd"]));
     ui::settMenu->editOpt(16, NULL, ui::getUIString(settMenuStr, 16) + getBoolText(cfg::config["zip"]));
-    ui::settMenu->editOpt(17, NULL, ui::getUIString(settMenuStr, 17) + getBoolText(cfg::config["langOverride"]));
-    ui::settMenu->editOpt(18, NULL, ui::getUIString(settMenuStr, 18) + getBoolText(cfg::config["trashBin"]));
-    ui::settMenu->editOpt(19, NULL, ui::getUIString(settMenuStr, 19) + ui::getUICString("sortType", cfg::sortType));
+    //ui::settMenu->editOpt(17, NULL, ui::getUIString(settMenuStr, 17) + getBoolText(cfg::config["langOverride"]));
+    ui::settMenu->editOpt(17, NULL, ui::getUIString(settMenuStr, 17) + getBoolText(cfg::config["trashBin"]));
+    ui::settMenu->editOpt(18, NULL, ui::getUIString(settMenuStr, 18) + ui::getUICString("sortType", cfg::sortType));
 
     char tmp[16];
     sprintf(tmp, "%.1f", ui::animScale);
-    ui::settMenu->editOpt(20, NULL, ui::getUIString(settMenuStr, 20) + std::string(tmp));
-    ui::settMenu->editOpt(21, NULL, ui::getUIString(settMenuStr, 21) + getBoolText(cfg::config["autoUpload"]));
+    ui::settMenu->editOpt(19, NULL, ui::getUIString(settMenuStr, 19) + std::string(tmp));
+    ui::settMenu->editOpt(20, NULL, ui::getUIString(settMenuStr, 20) + getBoolText(cfg::config["autoUpload"]));
 }
 
 void ui::settInit()
@@ -272,7 +272,7 @@ void ui::settInit()
 
     optHelpX = 1220 - gfx::getTextWidth(ui::getUICString("helpSettings", 0), 18);
 
-    for(unsigned i = 0; i < 22; i++)
+    for(unsigned i = 0; i < 21; i++)
     {
         ui::settMenu->addOpt(NULL, ui::getUIString("settingsMenu", i));
         ui::settMenu->optAddButtonEvent(i, HidNpadButton_A, toggleOpt, NULL);

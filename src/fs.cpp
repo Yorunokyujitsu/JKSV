@@ -5,7 +5,7 @@
 #include "cfg.h"
 #include "util.h"
 
-static std::string wd = "sdmc:/JKSV/";
+static std::string wd = "sdmc:/backup/savedata/JKSV/";
 
 static FSFILE *debLog;
 

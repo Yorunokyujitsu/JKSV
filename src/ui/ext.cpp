@@ -178,17 +178,17 @@ static void extMenuPackJKSV(void *a)
     ui::newThread(extMenuPackJKSVZip_t, send, fs::fileDrawFunc);
 }
 
-static void extMenuOutputEnUs(void *a)
+/*static void extMenuOutputEnUs(void *a)
 {
     ui::newThread(ui::saveTranslationFiles, NULL, NULL);
-}
+}*/
 
 void ui::extInit()
 {
     ui::extMenu = new ui::menu(200, 24, 1002, 24, 4);
     ui::extMenu->setCallback(extMenuCallback, NULL);
     ui::extMenu->setActive(false);
-    for(unsigned i = 0; i < 12; i++)
+    for(unsigned i = 0; i < 11; i++)
         ui::extMenu->addOpt(NULL, ui::getUIString("extrasMenu", i));
 
     //SD to SD
@@ -214,7 +214,7 @@ void ui::extInit()
     //Backup JKSV
     ui::extMenu->optAddButtonEvent(10, HidNpadButton_A, extMenuPackJKSV, NULL);
     //Translation so I can be lazy
-    ui::extMenu->optAddButtonEvent(11, HidNpadButton_A, extMenuOutputEnUs, NULL);
+    //ui::extMenu->optAddButtonEvent(11, HidNpadButton_A, extMenuOutputEnUs, NULL);
 }
 
 void ui::extExit()

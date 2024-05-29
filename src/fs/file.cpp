@@ -16,7 +16,7 @@
 #include "data.h"
 #include "cfg.h"
 
-static std::string wd = "sdmc:/JKSV/";
+static std::string wd = "sdmc:/backup/savedata/JKSV/";
 
 typedef struct
 {

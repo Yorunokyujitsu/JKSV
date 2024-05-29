@@ -19,13 +19,13 @@ std::string cfg::driveClientID, cfg::driveClientSecret, cfg::driveRefreshToken;
 std::string cfg::webdavOrigin, cfg::webdavBasePath, cfg::webdavUser, cfg::webdavPassword;
 
 
-const char *cfgPath = "sdmc:/config/JKSV/JKSV.cfg", *titleDefPath = "sdmc:/config/JKSV/titleDefs.txt", *workDirLegacy = "sdmc:/switch/jksv_dir.txt";
+const char *cfgPath = "sdmc:/config/JKSV/JKSV.cfg", *titleDefPath = "sdmc:/config/JKSV/titleDefs.txt", *workDirLegacy = "sdmc:/switch/JKSV/jksv_dir.txt";
 static std::unordered_map<std::string, unsigned> cfgStrings =
 {
     {"workDir", 0}, {"includeDeviceSaves", 1}, {"autoBackup", 2}, {"overclock", 3}, {"holdToDelete", 4}, {"holdToRestore", 5},
     {"holdToOverwrite", 6}, {"forceMount", 7}, {"accountSystemSaves", 8}, {"allowSystemSaveWrite", 9}, {"directFSCommands", 10},
-    {"exportToZIP", 11}, {"languageOverride", 12}, {"enableTrashBin", 13}, {"titleSortType", 14}, {"animationScale", 15},
-    {"favorite", 16}, {"blacklist", 17}, {"autoName", 18}, {"driveRefreshToken", 19},
+    {"exportToZIP", 11}, /*{"languageOverride", 12},*/ {"enableTrashBin", 12}, {"titleSortType", 13}, {"animationScale", 14},
+    {"favorite", 15}, {"blacklist", 16}, {"autoName", 17}, {"driveRefreshToken", 18},
 };
 
 const std::string _true_ = "true", _false_ = "false";
@@ -152,7 +152,7 @@ void cfg::resetConfig()
     cfg::config["sysSaveWrite"] = false;
     cfg::config["directFsCmd"] = false;
     cfg::config["zip"] = false;
-    cfg::config["langOverride"] = false;
+    //cfg::config["langOverride"] = true;
     cfg::config["trashBin"] = true;
     cfg::config["autoName"] = false;
     cfg::sortType = cfg::ALPHA;
@@ -232,7 +232,7 @@ static void loadConfigLegacy()
         cfg::config["sysSaveWrite"] = cfgIn >> 55 & 1;
         cfg::config["directFsCmd"] = cfgIn >> 53 & 1;
         cfg::config["zip"] = cfgIn >> 51 & 1;
-        cfg::config["langOverride"] = cfgIn >> 50 & 1;
+        //cfg::config["langOverride"] = cfgIn >> 50 & 1;
         cfg::config["trashBin"] = cfgIn >> 49 & 1;
         fs::delfile(legacyCfgPath.c_str());
     }
@@ -416,15 +416,15 @@ void cfg::loadConfig()
                         cfg::config["zip"] = textToBool(cfgRead.getNextValueStr());
                         break;
 
-                    case 12:
+                    /*case 12:
                         cfg::config["langOverride"] = textToBool(cfgRead.getNextValueStr());
-                        break;
+                        break;*/
 
-                    case 13:
+                    case 12:
                         cfg::config["trashBin"] = textToBool(cfgRead.getNextValueStr());
                         break;
 
-                    case 14:
+                    case 13:
                         {
                             std::string getSort = cfgRead.getNextValueStr();
                             if(getSort == "ALPHA")
@@ -436,36 +436,36 @@ void cfg::loadConfig()
                         }
                         break;
 
-                    case 15:
+                    case 14:
                         {
                             std::string animFloat = cfgRead.getNextValueStr();
                             ui::animScale = strtof(animFloat.c_str(), NULL);
                         }
                         break;
 
-                    case 16:
+                    case 15:
                         {
                             std::string tid = cfgRead.getNextValueStr();
                             cfg::favorites.push_back(strtoul(tid.c_str(), NULL, 16));
                         }
                         break;
 
-                    case 17:
+                    case 16:
                         {
                             std::string tid = cfgRead.getNextValueStr();
                             cfg::blacklist.push_back(strtoul(tid.c_str(), NULL, 16));
                         }
                         break;
 
-                    case 18:
+                    case 17:
                         cfg::config["autoName"] = textToBool(cfgRead.getNextValueStr());
                         break;
 
-                    case 19:
+                    case 18:
                         cfg::driveRefreshToken = cfgRead.getNextValueStr();
                         break;
 
-                    case 20:
+                    case 19:
                         cfg::config["autoUpload"] = textToBool(cfgRead.getNextValueStr());
                         break;
 
@@ -502,7 +502,7 @@ void cfg::saveConfig()
     fprintf(cfgOut, "allowSystemSaveWrite = %s\n", boolToText(cfg::config["sysSaveWrite"]).c_str());
     fprintf(cfgOut, "directFSCommands = %s\n", boolToText(cfg::config["directFsCmd"]).c_str());
     fprintf(cfgOut, "exportToZIP = %s\n", boolToText(cfg::config["zip"]).c_str());
-    fprintf(cfgOut, "languageOverride = %s\n", boolToText(cfg::config["langOverride"]).c_str());
+    //fprintf(cfgOut, "languageOverride = %s\n", boolToText(cfg::config["langOverride"]).c_str());
     fprintf(cfgOut, "enableTrashBin = %s\n", boolToText(cfg::config["trashBin"]).c_str());
     fprintf(cfgOut, "titleSortType = %s\n", sortTypeText().c_str());
     fprintf(cfgOut, "animationScale = %f\n", ui::animScale);
