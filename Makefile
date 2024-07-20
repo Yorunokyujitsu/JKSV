@@ -38,7 +38,7 @@ INCLUDES	:=	inc inc/ui inc/fs inc/gfx
 EXEFS_SRC	:=	exefs_src
 APP_TITLE   :=  JKSV
 APP_AUTHOR  :=  JK
-APP_VERSION :=  2024.05.29
+APP_VERSION :=  2024.07.20
 ROMFS	    :=	romfs
 ICON		:=	icon.jpg
 
