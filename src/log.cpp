@@ -7,7 +7,7 @@
 namespace
 {
     // Log output path. Will be updated once settings is added.
-    const std::string LOG_OUTPUT_PATH = "/JKSV/log.txt";
+    const std::string LOG_OUTPUT_PATH = "backup/savedata/JKSV/log.txt";
     // Buffer size for va
     const int LOG_VA_BUFFER_SIZE = 0x1000;
 }

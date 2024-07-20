@@ -1,0 +1,6 @@
+{
+    "origin": "https://your-webdav-server",
+    "basepath": "optional-base-path",
+    "username": "testuser",
+    "password": "testpassword"
+  }

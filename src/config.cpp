@@ -219,7 +219,7 @@ void config::exit()
 
 void config::reset()
 {
-    s_WorkingDirectory = "sdmc:/JKSV/";
+    s_WorkingDirectory = "sdmc:/backup/savedata/JKSV/";
     s_UIAnimationScaling = 3.0f;
     s_ConfigValues[CONFIG_INLCUDE_DEVICE_SAVES] = 0;
     s_ConfigValues[CONFIG_AUTO_BACKUP_SAVES] = false;
